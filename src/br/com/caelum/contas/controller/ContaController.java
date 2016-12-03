@@ -27,7 +27,7 @@ public class ContaController {
 		return "conta/conta-adicionada";
 	}
 	
-	@RequestMapping("listaContas")
+	@RequestMapping("/listaContas")
 	public ModelAndView lista() {
 	  ContaDAO dao = new ContaDAO();
 	  List<Conta> contas = dao.lista();
@@ -35,5 +35,13 @@ public class ContaController {
 	  ModelAndView mv = new ModelAndView("conta/lista");
 	  mv.addObject("contas", contas);
 	  return mv;
+	}
+	
+	@RequestMapping("/removeConta")
+	public String remove(Conta conta){
+		ContaDAO dao = new ContaDAO();
+		dao.remove(conta);
+		
+		return "redirect:listaConta";
 	}
 }
